@@ -24,6 +24,7 @@ class CustomerViewSet(viewsets.ModelViewSet):
         return Response(success_response("Customer list fetched.", serializer.data), status=status.HTTP_200_OK)
 
 
+
     def retrieve(self, request, pk=None):
         customer = self.get_object()
         serializer = self.get_serializer(customer)
