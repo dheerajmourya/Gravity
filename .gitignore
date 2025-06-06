@@ -17,6 +17,7 @@ db.sqlite3
 # Logs
 *.log
 
+
 # Media and static files
 media/
 staticfiles/
