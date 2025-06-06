@@ -1,0 +1,80 @@
+## Step-by-Step: Create and Export Postman Collection
+
+🔹 1. Open Postman
+If you haven’t already, download and install Postman.
+
+🔹 2. Create a New Collection
+Click on Collections (left sidebar)
+
+Click on + New Collection
+
+Name it: CustomerAPI
+
+(Optional) Add a description if needed
+
+Click Create
+
+
+
+🔹 3. Add Requests to Collection
+For each endpoint in your API, do the following:
+
+🔸 Registration
+Method: POST
+
+URL: http://127.0.0.1:8000/api/register/
+
+Body (JSON):
+
+
+{
+  "username": "testuser",
+  "password": "testpass123"
+}
+Save to CustomerAPI collection
+
+🔸 Token Generation
+POST /api/token/
+
+{
+  "username": "testuser",
+  "password": "testpass123"
+}
+🔸 Token Refresh
+POST /api/token/refresh/
+
+{
+  "refresh": "<your_refresh_token>"
+}
+🔸 Customer Endpoints (add JWT token in Authorization)
+For example:
+
+GET /api/customers/
+
+In Headers tab:
+Authorization: Bearer <access_token>
+
+Similarly add:
+
+POST /api/customers/
+
+GET /api/customers/<id>/
+
+PUT /api/customers/<id>/
+
+DELETE /api/customers/<id>/
+
+Use raw JSON body for POST/PUT.
+
+🔹 4. Export the Collection
+Go to Collections
+
+Hover over CustomerAPI → Click ••• (3 dots)
+
+Click Export
+
+Choose format: Collection v2.1
+
+Save it as:
+👉 CustomerAPI.postman_collection.json
+
