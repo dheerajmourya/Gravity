@@ -57,7 +57,7 @@ project/
 
 ## Setup Instructions
 1. Clone the Repository
-git clone https://github.com/YOUR_USERNAME/customer-api.git
+git clone https://github.com/dheerajmourya/Gravity.git
 cd customer-api
 
 2. Create Virtual Environment & Install Dependencies
