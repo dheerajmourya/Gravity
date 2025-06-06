@@ -4,15 +4,26 @@ from .models import Customer
 from .serializers import CustomerSerializer
 from rest_framework import viewsets, permissions
 from utils.response import success_response, error_response
+from rest_framework import filters
 
 class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
     permission_classes = [permissions.IsAuthenticated]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'email']
 
     def list(self, request):
-        serializer = self.get_serializer(self.get_queryset(), many=True)
+        queryset = self.filter_queryset(self.get_queryset())
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(success_response("Customer list fetched.", serializer.data))
+
+        serializer = self.get_serializer(queryset, many=True)
         return Response(success_response("Customer list fetched.", serializer.data), status=status.HTTP_200_OK)
+
+
 
     def retrieve(self, request, pk=None):
         customer = self.get_object()
